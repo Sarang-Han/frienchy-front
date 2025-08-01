@@ -1,26 +1,43 @@
 @import "tailwindcss";
 
+/* CSS Variables */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --orange-primary: #eb8401;
+  --orange-light: #ffa726;
+  --orange-dark: #d97502;
+  --bg-gray: #f9fafb;
+  --text-dark: #111827;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Mobile Container Styles */
+.mobile-container {
+  max-width: 414px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background-color: #f9fafb;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.status-bar-spacer {
+  height: 44px; /* iOS status bar height */
+  background-color: #f9fafb;
+  flex-shrink: 0;
 }
 
+.bottom-safe-area {
+  height: 8px; /* iOS bottom safe area */
+  background-color: #f9fafb;
+  flex-shrink: 0;
+}
+
+/* Global Styles */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: #ffffff;
+  color: var(--text-dark);
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }

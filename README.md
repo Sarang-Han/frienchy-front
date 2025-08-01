@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Frienchy Front - RAG 기반 챗봇 프론트엔드
 
-## Getting Started
+공공데이터 API를 활용한 RAG(Retrieval-Augmented Generation) 기반 챗봇의 프론트엔드 애플리케이션입니다.
 
-First, run the development server:
+## 🚀 기술 스택
+
+- **Framework**: Next.js 15 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **UI Components**: Headless UI
+- **Icons**: Heroicons
+- **HTTP Client**: Axios
+- **Development**: ESLint, Turbopack
+
+## 📱 프로젝트 특징
+
+- **모바일 우선 디자인**: 모바일 앱 비율(414px)로 고정된 UI
+- **웹뷰 호환성**: 네이티브 앱 웹뷰에서 사용 예정
+- **FastAPI 백엔드 연동**: AI 서비스와 REST API 통신
+- **실시간 채팅**: 사용자 친화적인 챗봇 인터페이스
+
+## 🛠️ 개발 환경 설정
+
+개발 서버를 시작하려면:
 
 ```bash
 npm run dev
-# or
+# 또는
 yarn dev
-# or
+# 또는
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+브라우저에서 [http://localhost:3000](http://localhost:3000)으로 접속하여 결과를 확인할 수 있습니다.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📁 프로젝트 구조
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+├── app/
+│   ├── globals.css      # 글로벌 스타일 (모바일 컨테이너 포함)
+│   ├── layout.tsx       # 루트 레이아웃
+│   └── page.tsx         # 메인 페이지
+├── components/
+│   └── ChatInterface.tsx # 챗봇 인터페이스 컴포넌트
+└── ...
+```
 
-## Learn More
+## 🎨 UI/UX 가이드라인
 
-To learn more about Next.js, take a look at the following resources:
+- **모바일 컨테이너**: 최대 너비 414px로 제한
+- **안전 영역**: iOS 상태바/하단 버튼 영역 고려
+- **다크 모드**: 시스템 설정에 따른 자동 테마 전환
+- **반응형**: 모바일 우선, 데스크톱 호환
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🔗 백엔드 연동
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+FastAPI 백엔드와의 연동을 위한 설정:
 
-## Deploy on Vercel
+```typescript
+// TODO: 환경 변수 설정
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📝 개발 가이드
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. **컴포넌트 개발**: Headless UI 우선 사용
+2. **타입 안정성**: TypeScript 엄격 모드 적용
+3. **스타일링**: Tailwind CSS 유틸리티 클래스 활용
+4. **상태 관리**: React Hooks 기반 로컬 상태 관리
+
+## 🚀 배포
+
+Vercel을 통한 간편 배포:
+
+```bash
+npm run build
+```
+
+자세한 배포 방법은 [Next.js 배포 문서](https://nextjs.org/docs/app/building-your-application/deploying)를 참조하세요.
