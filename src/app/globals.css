@@ -1,5 +1,22 @@
 @import "tailwindcss";
 
+/* CSS Reset */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+html {
+  /* 브라우저 기본 여백 완전 제거 */
+  margin: 0;
+  padding: 0;
+}
+
 /* CSS Variables */
 :root {
   --orange-primary: #eb8401;
