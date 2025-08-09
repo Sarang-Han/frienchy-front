@@ -3,11 +3,12 @@ import { Bars3Icon, EllipsisVerticalIcon } from '@heroicons/react/24/outline';
 interface HeaderProps {
   onMenuClick?: () => void;
   onSettingsClick?: () => void;
+  isModalOpen?: boolean;
 }
 
-const Header = ({ onMenuClick, onSettingsClick }: HeaderProps) => {
+const Header = ({ onMenuClick, onSettingsClick, isModalOpen = false }: HeaderProps) => {
   return (
-    <div className="fixed top-0 left-1/2 transform -translate-x-1/2 bg-white border-b border-gray-100 px-4 py-3 flex items-center justify-between z-40 w-full max-w-[414px]">
+  <div className="fixed top-0 left-1/2 transform -translate-x-1/2 bg-white border-b border-gray-100 px-4 py-3 flex items-center justify-between z-40 w-full max-w-[414px]">
       {/* Left - Menu Toggle */}
       <button 
         onClick={onMenuClick}

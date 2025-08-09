@@ -25,12 +25,15 @@ const TipsModal = ({ isOpen, onClose, onTipSelect }: TipsModalProps) => {
   if (!isOpen) return null;
 
   return (
-    <div 
-      className="fixed inset-0 bg-gray-900 bg-opacity-30 flex items-end z-50"
-      onClick={onClose}
-    >
-      <div 
-        className="bg-white rounded-t-3xl w-full max-h-[70vh] overflow-y-auto"
+    <>
+      {/* 오버레이 */}
+      <div
+        className="absolute inset-0 bg-[rgba(0,0,0,0.6)] z-50"
+        onClick={onClose}
+      />
+      {/* 모달 콘텐츠 */}
+      <div
+        className="absolute bottom-0 left-0 w-full bg-white rounded-t-3xl max-h-[70vh] overflow-y-auto z-60"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="px-6 py-6">
@@ -43,7 +46,6 @@ const TipsModal = ({ isOpen, onClose, onTipSelect }: TipsModalProps) => {
               <span className="text-gray-500 text-xl">×</span>
             </button>
           </div>
-          
           <div className="space-y-6">
             {tipCategories.map((category, categoryIndex) => (
               <div key={categoryIndex}>
@@ -64,7 +66,7 @@ const TipsModal = ({ isOpen, onClose, onTipSelect }: TipsModalProps) => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

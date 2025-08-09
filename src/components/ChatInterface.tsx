@@ -35,13 +35,14 @@ const ChatInterface = () => {
   };
 
   return (
-    <div className="flex flex-col flex-1 bg-gray-50 relative">
+    <div className={`flex flex-col flex-1 relative ${showTipsModal ? 'bg-gray-50' : 'bg-gray-50'}`}>
       <Header 
         onMenuClick={handleMenuClick}
         onSettingsClick={handleSettingsClick}
+        isModalOpen={showTipsModal}
       />
 
-      <div className="pt-16 flex-1 flex flex-col">
+  <div className="pt-16 flex-1 flex flex-col">
         {messages.length === 0 ? (
           <WelcomeSection
             username={username}
