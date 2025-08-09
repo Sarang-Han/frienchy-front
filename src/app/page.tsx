@@ -15,12 +15,9 @@ const ChatUI = () => {
   return (
     <div className={`flex flex-col flex-1 relative ${showTipsModal ? 'bg-gray-50' : 'bg-gray-50'}`}>
       <Header />
-      <div className="pt-16 flex-1 flex flex-col">
-        {messages.length === 0 ? (
-          <WelcomeSection username={username} />
-        ) : (
-          <MessagesList />
-        )}
+      <div className="pt-16 flex-1 flex flex-col overflow-y-auto">
+        <WelcomeSection username={username} />
+        <MessagesList />
       </div>
       <MessageInput />
       <TipsModal />
