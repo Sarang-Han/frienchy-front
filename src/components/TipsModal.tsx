@@ -1,10 +1,7 @@
-import { TipCategory } from '@/types/chat';
+'use client';
 
-interface TipsModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onTipSelect: (tip: string) => void;
-}
+import { useChat } from '@/context/ChatContext';
+import { TipCategory } from '@/types/chat';
 
 const tipCategories: TipCategory[] = [
   {
@@ -21,15 +18,19 @@ const tipCategories: TipCategory[] = [
   }
 ];
 
-const TipsModal = ({ isOpen, onClose, onTipSelect }: TipsModalProps) => {
-  if (!isOpen) return null;
+const TipsModal = () => {
+  const { showTipsModal, setShowTipsModal, handleTipSelect } = useChat();
+
+  if (!showTipsModal) return null;
+
+  const handleClose = () => setShowTipsModal(false);
 
   return (
     <>
       {/* 오버레이 */}
       <div
         className="absolute inset-0 bg-[rgba(0,0,0,0.6)] z-50"
-        onClick={onClose}
+        onClick={handleClose}
       />
       {/* 모달 콘텐츠 */}
       <div
@@ -40,7 +41,7 @@ const TipsModal = ({ isOpen, onClose, onTipSelect }: TipsModalProps) => {
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-xl font-bold text-gray-900">궁금한 내용을 키워드로 선택해보세요</h2>
             <button
-              onClick={onClose}
+              onClick={handleClose}
               className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center"
             >
               <span className="text-gray-500 text-xl">×</span>
@@ -54,7 +55,7 @@ const TipsModal = ({ isOpen, onClose, onTipSelect }: TipsModalProps) => {
                   {category.items.map((item, itemIndex) => (
                     <button
                       key={itemIndex}
-                      onClick={() => onTipSelect(item)}
+                      onClick={() => handleTipSelect(item)}
                       className="p-3 text-left bg-gray-50 rounded-xl hover:bg-[#eb8401] hover:text-white transition-colors text-sm"
                     >
                       {item}

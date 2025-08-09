@@ -1,12 +1,10 @@
-import { Message } from '@/types/chat';
+'use client';
 
-interface MessagesListProps {
-  messages: Message[];
-  isLoading: boolean;
-  messagesEndRef: React.RefObject<HTMLDivElement>;
-}
+import { useChat } from '@/context/ChatContext';
 
-const MessagesList = ({ messages, isLoading, messagesEndRef }: MessagesListProps) => {
+const MessagesList = () => {
+  const { messages, isLoading, messagesEndRef } = useChat();
+
   return (
     <div className="flex-1 overflow-y-auto px-4 py-4 pb-20 space-y-4">
       {messages.map((message) => (

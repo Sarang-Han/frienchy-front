@@ -1,10 +1,11 @@
+'use client';
+
 import Image from 'next/image';
 import { QuestionMarkCircleIcon } from '@heroicons/react/24/outline';
+import { useChat } from '@/context/ChatContext';
 
 interface WelcomeSectionProps {
   username: string;
-  onQuickKeyword: (keyword: string) => void;
-  onShowTips: () => void;
 }
 
 const quickKeywords = [
@@ -14,7 +15,9 @@ const quickKeywords = [
   "창업 절차"
 ];
 
-const WelcomeSection = ({ username, onQuickKeyword, onShowTips }: WelcomeSectionProps) => {
+const WelcomeSection = ({ username }: WelcomeSectionProps) => {
+  const { handleQuickKeyword, setShowTipsModal } = useChat();
+
   return (
     <div className="flex-1 px-6 pt-8 pb-12 overflow-y-auto">
       {/* Profile & Greeting */}
@@ -44,7 +47,7 @@ const WelcomeSection = ({ username, onQuickKeyword, onShowTips }: WelcomeSection
           {quickKeywords.map((keyword, index) => (
             <button
               key={index}
-              onClick={() => onQuickKeyword(keyword)}
+              onClick={() => handleQuickKeyword(keyword)}
               className="px-4 py-2 bg-white rounded-full border border-gray-200 text-gray-700 text-sm hover:bg-gray-50 hover:border-[#eb8401] transition-colors shadow-sm"
             >
               {keyword}
@@ -55,7 +58,7 @@ const WelcomeSection = ({ username, onQuickKeyword, onShowTips }: WelcomeSection
 
       {/* Tips Button */}
       <button
-        onClick={onShowTips}
+        onClick={() => setShowTipsModal(true)}
         className="flex items-center space-x-2 text-[#eb8401] text-sm font-medium"
       >
         <QuestionMarkCircleIcon className="w-4 h-4" />
