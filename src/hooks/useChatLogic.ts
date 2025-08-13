@@ -3,12 +3,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { Message } from '@/types/chat';
 
-// API가 요구하는 메시지 형식
-interface ApiMessage {
-  role: 'user' | 'model';
-  parts: string;
-}
-
 export const useChatLogic = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [inputValue, setInputValue] = useState('');
@@ -36,30 +30,18 @@ export const useChatLogic = () => {
     };
 
     // UI에 사용자 메시지 바로 추가
-    const updatedMessages = [...messages, userMessage];
-    setMessages(updatedMessages);
+    setMessages(prev => [...prev, userMessage]);
     setInputValue('');
     setIsLoading(true);
 
     try {
-      // API 요청을 위해 메시지 형식 변환
-      const history: ApiMessage[] = updatedMessages.map(msg => ({
-        role: msg.sender === 'user' ? 'user' : 'model',
-        parts: msg.content,
-      }));
-      
-      // 마지막 메시지는 현재 입력이므로 history에서 제외하고 input으로 전달
-      const currentMessage = history.pop(); 
-
+      // 백엔드에 단일 메시지만 전달
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ 
-          message: currentMessage?.parts,
-          history: history 
-        }),
+        body: JSON.stringify({ message: messageContent }),
       });
 
       if (!response.ok) {
@@ -89,7 +71,7 @@ export const useChatLogic = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [inputValue, isLoading, messages]);
+  }, [inputValue, isLoading]);
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {
